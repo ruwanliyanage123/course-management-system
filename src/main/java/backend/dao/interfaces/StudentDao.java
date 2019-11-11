@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface StudentDao<Student> {
 
-    public abstract List<Student> getAllCourses();
+    public abstract List<Student> getAllStudents();
 
-    public abstract void addCourse(Student student);
+    public abstract void addStudent(Student student);
 
-    public abstract Student getOneCourse();
+    public abstract Student getOneStudent();
 
-    public abstract void updateCourse(Student course);
+    public abstract void updateStudent(Student student);
 
-    public abstract void deleteCourse(int studentId);
+    public abstract void deleteStudent(int studentId);
 }

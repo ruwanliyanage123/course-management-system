@@ -3,13 +3,13 @@ package backend.dao.interfaces;
 import java.util.List;
 
 public interface SubjectDao<Subject> {
-    public abstract List<Subject> getAllCourses();
+    public abstract List<Subject> getAllSubjects();
 
-    public abstract void addCourse(Subject student);
+    public abstract void addSubject(Subject subject);
 
-    public abstract Subject getOneCourse();
+    public abstract Subject getOneSubject();
 
-    public abstract void updateCourse(Subject course);
+    public abstract void updateSubject(Subject subject);
 
-    public abstract void deleteCourse(int subjectId);
+    public abstract void deleteSubject(String subjectId);
 }
