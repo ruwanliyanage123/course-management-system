@@ -85,4 +85,8 @@ public abstract class Staff {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+    public abstract void setWorkingHours(int hours);
+
+    public abstract int getWorkingHours();
 }
