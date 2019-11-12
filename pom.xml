@@ -6,6 +6,7 @@
     <groupId>com.course-management-system</groupId>
     <artifactId>course-management-system</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
