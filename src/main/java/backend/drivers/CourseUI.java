@@ -1,5 +1,7 @@
 package backend.drivers;
 
+import backend.dao.concretes.CourseDaoImpl;
+import backend.dao.interfaces.CourseDao;
 import backend.database.DatabaseConnection;
 import backend.models.Course;
 import org.slf4j.Logger;
@@ -16,15 +18,23 @@ import java.sql.Statement;
 public class CourseUI {
     private JPanel courseUI;
     private JButton addCourseButton;
-    private JTextField courseIDField;
     private JTextField courseNameField;
     private JTextField result;
     private static Logger logger = LoggerFactory.getLogger(CourseUI.class);
+    private CourseDao courseDao;
+
 
     public CourseUI() {
+        this.courseDao = new CourseDaoImpl();
+        /**
+         * Action for the course adding button.
+         */
         addCourseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                String courseName = courseNameField.getText();
+                Course course = new Course(courseName);
+                courseDao.addCourse(course);
+                courseNameField.setText("");
             }
         });
     }

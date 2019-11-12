@@ -1,20 +1,18 @@
 package backend.models;
 
+/**
+ * course model
+ */
 public class Course {
-    private String courseId;
+    private int courseId;
     private String courseName;
 
-    public Course(String courseId, String courseName) {
-        this.courseId = courseId;
+    public Course(String courseName) {
         this.courseName = courseName;
     }
 
-    public String getCourseId() {
+    public int getCourseId() {
         return courseId;
-    }
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
     }
 
     public String getCourseName() {
