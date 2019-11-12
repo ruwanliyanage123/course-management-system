@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -56,11 +57,37 @@ public class CourseDaoImpl implements CourseDao<Course> {
         }
     }
 
-    public Course getOneCourse() {
-        return null;
+    /**
+     * will return the given object
+     *
+     * @param courseID need to refer course
+     * @return the desired object
+     */
+    public Course getOneCourse(int courseID) {
+        connection = databaseConnection.getConnection();
+        String retrieveQuery = "SELECT * FROM course WHERE courseID = ?";
+        Course course = null;
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(retrieveQuery);
+            preparedStatement.setInt(1, courseID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                course = new Course(resultSet.getString(2));
+            }
+            String message1 = "Course retrieved successfully";
+            logger.info(message1);
+            connection.close();
+            String message2 = "Connection closed";
+            logger.info(message2);
+        } catch (SQLException e) {
+            String message = "Check the course id ";
+            logger.error(message, e);
+        }
+        return course;
     }
 
-    public void updateCourse(Course course) {
+    public void updateCourse(Course course, int courseId) {
 
     }
 

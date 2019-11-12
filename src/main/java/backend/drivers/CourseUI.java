@@ -21,9 +21,9 @@ public class CourseUI {
     private JTextField courseNameField;
     private JTextField courseId;
     private JButton deleteButton;
+    private JButton searchButton;
     private static Logger logger = LoggerFactory.getLogger(CourseUI.class);
     private CourseDao courseDao;
-
 
     public CourseUI() {
         this.courseDao = new CourseDaoImpl();
@@ -49,10 +49,20 @@ public class CourseUI {
                 courseId.setText("");
             }
         });
+
+        /**
+         * Action for the course search button
+         */
+        searchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int courseID = Integer.parseInt(courseId.getText());
+                Course course = (Course) courseDao.getOneCourse(courseID);
+                courseNameField.setText(course.getCourseName());
+            }
+        });
     }
 
     public static void main(String[] args) {
-
         JFrame frame = new JFrame("CourseUI");
         frame.setContentPane(new CourseUI().courseUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -8,9 +8,9 @@ public interface CourseDao<Course> {
 
     public abstract void addCourse(Course course);
 
-    public abstract Course getOneCourse();
+    public abstract Course getOneCourse(int courseID);
 
-    public abstract void updateCourse(Course course);
+    public abstract void updateCourse(Course course, int courseId);
 
     public abstract void deleteCourse(int courseId);
 }
