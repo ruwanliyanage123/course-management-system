@@ -22,6 +22,8 @@ public class CourseUI {
     private JTextField courseId;
     private JButton deleteButton;
     private JButton searchButton;
+    private JButton editButton;
+    private JButton submitButton;
     private static Logger logger = LoggerFactory.getLogger(CourseUI.class);
     private CourseDao courseDao;
 
@@ -58,6 +60,30 @@ public class CourseUI {
                 int courseID = Integer.parseInt(courseId.getText());
                 Course course = (Course) courseDao.getOneCourse(courseID);
                 courseNameField.setText(course.getCourseName());
+                courseId.setEditable(false);
+                courseNameField.setEditable(false);
+            }
+        });
+
+        /**
+         * Action for the course edit button
+         */
+        editButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int courseID = Integer.parseInt(courseId.getText());
+                Course course = (Course) courseDao.getOneCourse(courseID);
+                courseNameField.setText(course.getCourseName());
+            }
+        });
+        /**
+         * Action for the course submit button
+         */
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String editedCourseName = courseNameField.getText();
+                int courseID = Integer.parseInt(courseId.getText());
+                Course course = new Course(editedCourseName);
+                courseDao.updateCourse(course, courseID);
             }
         });
     }

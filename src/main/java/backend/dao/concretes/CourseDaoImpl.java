@@ -77,9 +77,6 @@ public class CourseDaoImpl implements CourseDao<Course> {
             }
             String message1 = "Course retrieved successfully";
             logger.info(message1);
-            connection.close();
-            String message2 = "Connection closed";
-            logger.info(message2);
         } catch (SQLException e) {
             String message = "Check the course id ";
             logger.error(message, e);
@@ -87,8 +84,31 @@ public class CourseDaoImpl implements CourseDao<Course> {
         return course;
     }
 
+    /**
+     * Will update course
+     * @param course replacing object
+     * @param courseId need to refer object
+     */
     public void updateCourse(Course course, int courseId) {
-
+        connection = databaseConnection.getConnection();
+        String connectionMessage = "Connection established for update courses";
+        logger.info(connectionMessage);
+        String updateQuery = "UPDATE course SET courseName=? WHERE courseID =?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(updateQuery);
+            preparedStatement.setString(1,course.getCourseName());
+            preparedStatement.setInt(2,courseId);
+            preparedStatement.executeUpdate();
+            String message1 = "Course updated successfully";
+            logger.info(message1);
+            connection.close();
+            String message2 = "Database connection closed";
+            logger.info(message2);
+        } catch (SQLException e) {
+            String message = "Check course id and enter valid inputs";
+            logger.error(message, e);
+        }
     }
 
     /**
