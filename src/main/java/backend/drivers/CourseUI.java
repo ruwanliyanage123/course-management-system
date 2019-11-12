@@ -17,9 +17,10 @@ import java.sql.Statement;
 
 public class CourseUI {
     private JPanel courseUI;
-    private JButton addCourseButton;
+    private JButton addButton;
     private JTextField courseNameField;
-    private JTextField result;
+    private JTextField courseId;
+    private JButton deleteButton;
     private static Logger logger = LoggerFactory.getLogger(CourseUI.class);
     private CourseDao courseDao;
 
@@ -29,12 +30,23 @@ public class CourseUI {
         /**
          * Action for the course adding button.
          */
-        addCourseButton.addActionListener(new ActionListener() {
+        addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String courseName = courseNameField.getText();
                 Course course = new Course(courseName);
                 courseDao.addCourse(course);
                 courseNameField.setText("");
+            }
+        });
+
+        /**
+         * Action for the course delete button
+         */
+        deleteButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int courseID = Integer.parseInt(courseId.getText());
+                courseDao.deleteCourse(courseID);
+                courseId.setText("");
             }
         });
     }

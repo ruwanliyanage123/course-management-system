@@ -64,7 +64,27 @@ public class CourseDaoImpl implements CourseDao<Course> {
 
     }
 
+    /**
+     * Will delete the given course from databse
+     *
+     * @param courseId needed to refer course uniquely.
+     */
     public void deleteCourse(int courseId) {
-
+        connection = databaseConnection.getConnection();
+        String deleteQuery = "DELETE FROM course WHERE courseID = ?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1, courseId);
+            preparedStatement.executeUpdate();
+            String message1 = "Successfully deleted";
+            logger.info(message1);
+            connection.close();
+            String message2 = "Connection closed";
+            logger.info(message2);
+        } catch (SQLException e) {
+            String message = "Make sure that courseID is already exists. Check courseID and try again";
+            logger.error(message, e);
+        }
     }
 }
