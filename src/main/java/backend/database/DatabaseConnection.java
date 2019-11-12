@@ -1,8 +1,10 @@
-package backend;
+package backend.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.sun.xml.internal.bind.v2.TODO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,18 +15,20 @@ public class DatabaseConnection {
     private static Logger logger = LoggerFactory.getLogger(DatabaseConnection.class);
     private static DatabaseConnection databaseConnection;
     private Connection connection;
-    private String hostUrl ="";
-    private String username="";
-    private String password="";
 
     /**
      * we have to keep constructor as private to limit the class for only one instance.
      */
     private DatabaseConnection() {
         try {
-            Class.forName("");
+            Class.forName("com.mysql.jdbc.Driver");
+            //TODO:explain the assert
             assert false;
+            String password = "19940306";
+            String username = "root";
+            String hostUrl= "jdbc:mysql://localhost:3306/course_management_system";
             this.connection = DriverManager.getConnection(hostUrl, username, password);
+            logger.info("Database Connection Creation successfully");
         } catch (ClassNotFoundException e) {
             String message = "Check JDBC connection";
             logger.error(message,e);
@@ -34,7 +38,7 @@ public class DatabaseConnection {
         }
     }
 
-    private Connection getConnection() {
+    public Connection getConnection() {
         return connection;
     }
 
@@ -52,4 +56,6 @@ public class DatabaseConnection {
         }
         return databaseConnection;
     }
+
+
 }
