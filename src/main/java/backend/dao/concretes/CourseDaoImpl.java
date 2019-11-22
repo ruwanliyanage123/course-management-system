@@ -36,7 +36,7 @@ public class CourseDaoImpl implements CourseDao<Course> {
      */
     public String[][] getAllCourses() {
         connection = databaseConnection.getConnection();
-        String query = "SELECT * FROM courses";
+        String query = "SELECT * FROM course";
         PreparedStatement preparedStatement;
         List<String[]> courses = new ArrayList<String[]>();
         try {

@@ -98,20 +98,47 @@ public class CourseUI {
         });
     }
 
-    public static JTable createTable() {
-        String[] columns = { "CourseID", "CourseName" };
-        CourseDao courseDao = new CourseDaoImpl();
-        String[][] rows = courseDao.getAllCourses();
-        JTable jTable = new JTable(rows, columns);
-        return jTable;
-    }
-
     public static void main(String[] args) {
+        CourseTable courseTable = new CourseTable();
+        courseTable.setTable();
         JFrame frame = new JFrame("CourseUI");
         frame.setContentPane(new CourseUI().courseUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1500,1500);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    /**
+     * static class to create a JTable in separately
+     */
+    static class CourseTable {
+        CourseTable() {
+
+        }
+
+        /**
+         * to set the course table
+         */
+        void setTable() {
+            JFrame jFrame = new JFrame("");
+            jFrame.setDefaultCloseOperation(3);
+            JTable jTable = createTable();
+            JScrollPane jScrollPane = new JScrollPane(jTable);
+            jFrame.getContentPane().add(jScrollPane);
+            jFrame.pack();
+            jFrame.setVisible(true);
+        }
+
+        /**
+         * to create a jtable
+         *
+         * @return jtable
+         */
+        JTable createTable() {
+            String[] columns = { "CourseID", "CourseName" };
+            CourseDao courseDao = new CourseDaoImpl();
+            String[][] rows = courseDao.getAllCourses();
+            return new JTable(rows, columns);
+        }
     }
 }
