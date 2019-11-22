@@ -4,11 +4,11 @@ This will provide a basic guidline to the beginners who are willing to create a 
 	
   ![class diagram](https://firebasestorage.googleapis.com/v0/b/firestorecrud-cdd76.appspot.com/o/course-management-system%2FClass%20Diagram.png?alt=media&token=079498be-d228-4a26-b895-afa9bf903eed)
 
-The EER diagram
+*The EER diagram
 
 ![eer](https://firebasestorage.googleapis.com/v0/b/firestorecrud-cdd76.appspot.com/o/course-management-system%2FEER.png?alt=media&token=2642d98d-d567-476e-88fe-656b75d9b506)
 
-Logging
+*Logging
 
 Logging is used to store exceptions, information, and warnings as messages that occur during the execution of a program.
 Logging helps a programmer in the debugging process of a program. Java provides logging facility in the java.util.logging 
@@ -37,8 +37,21 @@ Logger can use to show errors, warnings, informations so on
 	logger.warn("message");
 	logger.debug("message");
 	logger.info("message");
+	
+	
+*Nested classes
 
-GIT commands
+In this project, I used a nested class(static nested class) named, CourseTable. By using this nested class we can keep course table logics in seperately but inside the courseUI class. the nested classes will increase the readability. two types of nested classes. 1.static nested class 2.non-static nested class(inner class)
+
+call a static nested class
+	
+	OuterClass.InnerClass innerClass = new OuterClass.InnerClass();
+call a non-static class alias inner class
+	
+	OuterClass outerClass = new OuterClass();
+	OuterClass.InnerClass innerClass = outer.new InnerClass();
+
+*GIT commands
 
 basic commands
 basically local git repository contains three parts. those are
