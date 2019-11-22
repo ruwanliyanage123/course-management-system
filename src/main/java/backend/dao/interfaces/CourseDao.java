@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CourseDao<Course> {
 
-    public abstract List<Course> getAllCourses();
+    public abstract String[][] getAllCourses();
 
     public abstract void addCourse(Course course);
 

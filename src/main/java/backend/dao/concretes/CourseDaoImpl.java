@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDaoImpl implements CourseDao<Course> {
@@ -29,8 +30,36 @@ public class CourseDaoImpl implements CourseDao<Course> {
         }
     }
 
-    public List<Course> getAllCourses() {
-        return null;
+    /**
+     * to return all courses
+     * @return list of courses
+     */
+    public String[][] getAllCourses() {
+        connection = databaseConnection.getConnection();
+        String query = "SELECT * FROM courses";
+        PreparedStatement preparedStatement;
+        List<String[]> courses = new ArrayList<String[]>();
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String[] tuple = new String[2];
+                tuple[0] = String.valueOf(resultSet.getInt(1));
+                tuple[1] = resultSet.getString(2);
+                courses.add(tuple);
+            }
+            connection.close();
+            String message = "Connection closed";
+            logger.info(message);
+        } catch (SQLException e) {
+            String message = "Check connection";
+            logger.error(message, e);
+        }
+        String[][] row = new String[courses.size()][2];
+        for (int i = 0; i < courses.size(); i++) {
+            row[i] = courses.get(i);
+        }
+        return row;
     }
 
     /**

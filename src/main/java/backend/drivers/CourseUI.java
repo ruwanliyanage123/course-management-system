@@ -8,14 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 public class CourseUI {
+    private static Object BorderLayout;
     private JPanel courseUI;
     private JButton addButton;
     private JTextField courseNameField;
@@ -26,9 +30,15 @@ public class CourseUI {
     private JButton submitButton;
     private static Logger logger = LoggerFactory.getLogger(CourseUI.class);
     private CourseDao courseDao;
+    static JTable jTable;
 
     public CourseUI() {
         this.courseDao = new CourseDaoImpl();
+
+        /**
+         * to display the all courses table
+         */
+
         /**
          * Action for the course adding button.
          */
