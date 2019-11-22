@@ -98,6 +98,14 @@ public class CourseUI {
         });
     }
 
+    public static JTable createTable() {
+        String[] columns = { "CourseID", "CourseName" };
+        CourseDao courseDao = new CourseDaoImpl();
+        String[][] rows = courseDao.getAllCourses();
+        JTable jTable = new JTable(rows, columns);
+        return jTable;
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("CourseUI");
         frame.setContentPane(new CourseUI().courseUI);
