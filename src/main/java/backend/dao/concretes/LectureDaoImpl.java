@@ -98,7 +98,32 @@ public class LectureDaoImpl implements LectureDao<Lecture> {
     }
 
     public void updateLecture(Lecture lecture) {
-
+        connection = databaseConnection.getConnection();
+        String connectionMessage = "Connection established for update courses";
+        logger.info(connectionMessage);
+        String updateQuery = "UPDATE lecturer SET firstName=?, lastName=?,mobile=?,email=?,salary=?,city=?,street=?, lecturerHours=? WHERE nic=?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(updateQuery);
+            preparedStatement.setString(1, lecture.getFirstName());
+            preparedStatement.setString(2, lecture.getLastName());
+            preparedStatement.setString(3, lecture.getMobile());
+            preparedStatement.setString(4, lecture.getEmail());
+            preparedStatement.setDouble(5, lecture.getSalary());
+            preparedStatement.setString(6, lecture.getCity());
+            preparedStatement.setString(7, lecture.getStreet());
+            preparedStatement.setInt(8, lecture.getWorkingHours());
+            preparedStatement.setString(9, lecture.getNic());
+            preparedStatement.executeUpdate();
+            String message1 = "Course updated successfully";
+            logger.info(message1);
+            connection.close();
+            String message2 = "Database connection closed";
+            logger.info(message2);
+        } catch (SQLException e) {
+            String message = "Check course id and enter valid inputs";
+            logger.error(message, e);
+        }
     }
 
     public void deleteLecture(String nic) {
