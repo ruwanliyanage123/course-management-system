@@ -19,6 +19,15 @@ public class SubjectDaoImpl implements SubjectDao<Subject> {
     private DatabaseConnection databaseConnection;
     private Connection connection;
 
+    public SubjectDaoImpl() {
+        try {
+            databaseConnection = DatabaseConnection.getInstance();
+        } catch (SQLException e) {
+            String message = "DatabaseConnection class not initiated";
+            log.error(message, e);
+        }
+    }
+
     public String[][] getAllSubjects() {
         return null;
     }
@@ -26,18 +35,18 @@ public class SubjectDaoImpl implements SubjectDao<Subject> {
     /**
      * Add subject into mysql database
      *
-     * @param subject  subject
-     * @param courseID relevant course
+     * @param subject subject
      */
-    public void addSubject(Subject subject, int courseID) {
-        this.connection = databaseConnection.getConnection();
+    public void addSubject(Subject subject) {
+
         PreparedStatement preparedStatement;
         String query = "INSERT INTO subject(subjectName,numberOfCredit,courseID) VALUES(?,?,?)";
         try {
+            connection = databaseConnection.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, subject.getSubjectName());
             preparedStatement.setInt(2, subject.getNumberOfCredits());
-            preparedStatement.setInt(3, courseID);
+            preparedStatement.setInt(3, subject.getCourseID());
             preparedStatement.executeUpdate();
             String message1 = subject.getSubjectName() + " Subject Added successfully";
             log.info(message1);
