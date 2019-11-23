@@ -93,7 +93,7 @@ public class SubjectDaoImpl implements SubjectDao<Subject> {
         }
     }
 
-    public Subject getOneSubject() {
+    public Subject getOneSubject(String subjectID) {
         return null;
     }
 

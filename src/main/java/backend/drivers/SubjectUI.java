@@ -1,6 +1,9 @@
 package backend.drivers;
 
+import backend.dao.concretes.StudentDaoImpl;
 import backend.dao.concretes.SubjectDaoImpl;
+import backend.dao.interfaces.StudentDao;
+import backend.dao.interfaces.SubjectDao;
 import backend.models.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +26,8 @@ public class SubjectUI {
     private JButton deleteButton;
     private JTextField subjectID;
     private JButton viewButton;
+    private JButton editButton;
+    private JButton editSubmitButton;
 
     public SubjectUI() {
 
@@ -53,17 +58,38 @@ public class SubjectUI {
         /**
          * to delete given id
          */
-                deleteButton.addActionListener(new ActionListener() {
-            @Override public void actionPerformed(ActionEvent e) {
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 int subject = Integer.parseInt(subjectID.getText());
                 SubjectDaoImpl subjectDao  = new SubjectDaoImpl();
                 subjectDao.deleteSubject(subject);
             }
         });
+        /**
+         * to view All subjects
+         */
         viewButton.addActionListener(new ActionListener() {
-            @Override public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 SubjectTable subjectTable = new SubjectTable();
                 subjectTable.setTable();
+            }
+        });
+
+        /**
+         * to edit a subject
+         */
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String subjectId = subjectID.getText();
+                SubjectDao subjectDao = new SubjectDaoImpl();
+                Subject subject = (Subject) subjectDao.getOneSubject(subjectId);
+                subjectID.setText(String.valueOf(subject.getSubjectId()));
+                subjectName.setText(subject.getSubjectName());
+                numberOfCredits.setText(String.valueOf(subject.getNumberOfCredits()));
+                courseID.setText(String.valueOf(subject.getCourseID()));
             }
         });
     }
