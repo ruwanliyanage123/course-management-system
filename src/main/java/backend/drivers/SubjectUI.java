@@ -92,6 +92,21 @@ public class SubjectUI {
                 courseID.setText(String.valueOf(subject.getCourseID()));
             }
         });
+        /**
+         * To edit submit button
+         */
+        editSubmitButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                int studentID1 = Integer.parseInt(subjectID.getText());
+                String subjectName1 = subjectName.getText();
+                int numberOfCredits1 = Integer.parseInt(numberOfCredits.getText());
+                int courseID1 = Integer.parseInt(courseID.getText());
+                Subject subject = new Subject(subjectName1, numberOfCredits1, courseID1);
+                subject.setSubjectId(studentID1);
+                SubjectDaoImpl subjectDao  = new SubjectDaoImpl();
+                subjectDao.updateSubject(subject);
+            }
+        });
     }
 
     public static void main(String[] args) {
