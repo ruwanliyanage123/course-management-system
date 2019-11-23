@@ -127,8 +127,30 @@ public class SubjectDaoImpl implements SubjectDao<Subject> {
         return subject;
     }
 
+    /**
+     * to update subject  table
+     * @param subject subject
+     */
     public void updateSubject(Subject subject) {
-
+        PreparedStatement preparedStatement;
+        String query = "UPDATE subject SET subjectName = ?, numberOfCredit =?, courseID= ? WHERE subjectID =?";
+        try {
+            connection = databaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, subject.getSubjectName());
+            preparedStatement.setInt(2, subject.getNumberOfCredits());
+            preparedStatement.setInt(3, subject.getCourseID());
+            preparedStatement.setInt(4,subject.getSubjectId());
+            preparedStatement.executeUpdate();
+            String message1 = subject.getSubjectName() + " Subject updated successfully";
+            log.info(message1);
+            connection.close();
+            String message2 = "Database connection closed";
+            log.info(message2);
+        } catch (SQLException e) {
+            String message = "Database connection problem. check your Host, Username, Password and retry";
+            log.error(message, e);
+        }
     }
 
     /**
