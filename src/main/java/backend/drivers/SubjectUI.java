@@ -54,4 +54,36 @@ public class SubjectUI {
         frame.pack();
         frame.setVisible(true);
     }
+
+    /**
+     * use a nested class to keep following two methods in separately. it will increase the readability also.
+     */
+    static class SubjectTable{
+        public SubjectTable() {
+        }
+
+        /**
+         * create the JTable
+         * @return JTable
+         */
+        JTable creteTable(){
+            SubjectDaoImpl subjectDao = new SubjectDaoImpl();
+            String[] columns = {"subjectID","subjectName","numberOfCredit","courseID "};
+            String[][] rows = subjectDao.getAllSubjects();
+            return new JTable(rows, columns);
+        }
+
+        /**
+         * used to set created table
+         */
+        void setTable(){
+            JFrame jFrame = new JFrame("subject ui");
+            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            JTable jTable = creteTable();
+            JScrollPane jScrollPane = new JScrollPane(jTable);
+            jFrame.getContentPane().add(jScrollPane);
+            jFrame.pack();
+            jFrame.setVisible(true);
+        }
+    }
 }
