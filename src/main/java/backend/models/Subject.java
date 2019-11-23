@@ -1,21 +1,30 @@
 package backend.models;
 
 public class Subject {
-    private String subjectId;
+    private int subjectId;
     private String subjectName;
     private int numberOfCredits;
+    private int courseID;
 
-    public Subject(String subjectId, String subjectName, int numberOfCredits) {
-        this.subjectId = subjectId;
-        this.subjectName = subjectName;
-        this.numberOfCredits = numberOfCredits;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public String getSubjectId() {
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
+
+    public Subject(String subjectName, int numberOfCredits, int courseID) {
+        this.subjectName = subjectName;
+        this.numberOfCredits = numberOfCredits;
+        this.courseID = courseID;
+    }
+
+    public int getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(String subjectId) {
+    public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
     }
 
