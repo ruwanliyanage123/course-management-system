@@ -48,6 +48,8 @@ public class SubjectUI {
     }
 
     public static void main(String[] args) {
+        SubjectTable subjectTable = new SubjectTable();
+        subjectTable.setTable();
         JFrame frame = new JFrame("SubjectUI");
         frame.setContentPane(new SubjectUI().SubjectUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

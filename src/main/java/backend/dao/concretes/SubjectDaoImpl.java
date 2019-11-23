@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,8 +30,41 @@ public class SubjectDaoImpl implements SubjectDao<Subject> {
         }
     }
 
+    /**
+     * to retrieve subjects from database
+     *
+     * @return rows of the table
+     */
     public String[][] getAllSubjects() {
-        return null;
+        String query = "SELECT * FROM subject";
+        PreparedStatement preparedStatement;
+        List<String[]> list = new ArrayList<String[]>();
+        try {
+            connection = databaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String[] tuple = new String[4];
+                tuple[0] = String.valueOf(resultSet.getInt(1));
+                tuple[1] = resultSet.getString(2);
+                tuple[2] = String.valueOf(resultSet.getInt(3));
+                tuple[3] = String.valueOf(resultSet.getInt(4));
+                list.add(tuple);
+            }
+            String message1 = "Subject retrieved successfully";
+            log.info(message1);
+            connection.close();
+            String message2 = "Database connection closed";
+            log.info(message2);
+        } catch (SQLException e) {
+            String message = "Database connection problem. check your Host, Username, Password and retry";
+            log.error(message, e);
+        }
+        String[][] rows = new String[list.size()][4];
+        for (int i = 0; i < list.size(); i++) {
+            rows[i] = list.get(i);
+        }
+        return rows;
     }
 
     /**
@@ -38,7 +73,6 @@ public class SubjectDaoImpl implements SubjectDao<Subject> {
      * @param subject subject
      */
     public void addSubject(Subject subject) {
-
         PreparedStatement preparedStatement;
         String query = "INSERT INTO subject(subjectName,numberOfCredit,courseID) VALUES(?,?,?)";
         try {
