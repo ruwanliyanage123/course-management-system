@@ -93,8 +93,34 @@ public class LectureDaoImpl implements LectureDao<Lecture> {
         }
     }
 
-    public Lecture getOneLecture(String nic1) {
-        return null;
+    public Lecture getOneLecture(String nic) {
+        connection = databaseConnection.getConnection();
+        String retrieveQuery = "SELECT * FROM lecturer WHERE nic = ?";
+        Lecture lecture = null;
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(retrieveQuery);
+            preparedStatement.setString(1, nic);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String nic1 = resultSet.getString(1);
+                String firstName = resultSet.getString(2);
+                String lastName = resultSet.getString(3);
+                String mobile = resultSet.getString(4);
+                String email = resultSet.getString(5);
+                double salary = Double.parseDouble(resultSet.getString(6));
+                String city = resultSet.getString(7);
+                String street = resultSet.getString(8);
+                int workingHours = resultSet.getInt(9);
+                lecture = new Lecture(nic1, firstName, lastName, city, street, email, mobile, salary, workingHours);
+            }
+            String message1 = "Course retrieved successfully";
+            logger.info(message1);
+        } catch (SQLException e) {
+            String message = "Check the course id ";
+            logger.error(message, e);
+        }
+        return lecture;
     }
 
     public void updateLecture(Lecture lecture) {
