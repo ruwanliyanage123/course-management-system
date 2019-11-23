@@ -73,6 +73,16 @@ public class StudentUI {
 
             }
         });
+
+        /**
+         * to view data
+         */
+        viewButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                StudentTable studentTable = new StudentTable();
+                studentTable.setTable();
+            }
+        });
     }
 
     public static void main(String[] args) {
