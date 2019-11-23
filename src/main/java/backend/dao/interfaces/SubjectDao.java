@@ -3,7 +3,7 @@ package backend.dao.interfaces;
 import java.util.List;
 
 public interface SubjectDao<Subject> {
-    public abstract List<Subject> getAllSubjects();
+    public abstract String[][] getAllSubjects();
 
     public abstract void addSubject(Subject subject);
 

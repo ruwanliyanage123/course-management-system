@@ -6,7 +6,7 @@ import backend.models.Subject;
 import java.util.List;
 
 public class SubjectDaoImpl implements SubjectDao<Subject> {
-    public List<Subject> getAllSubjects() {
+    public String[][] getAllSubjects() {
         return null;
     }
 
