@@ -34,7 +34,8 @@ public class LecturerUI {
          * Take data from user interface and put into database
          */
         addButton.addActionListener(new ActionListener() {
-            @Override public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 String nic1 = nic.getText();
                 String firstName1 = firstName.getText();
                 String lastName1 = lastName.getText();
@@ -55,7 +56,8 @@ public class LecturerUI {
          * clear fields
          */
         clearButton.addActionListener(new ActionListener() {
-            @Override public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 nic.setText("");
                 firstName.setText("");
                 lastName.setText("");
@@ -72,9 +74,31 @@ public class LecturerUI {
          * see the lecturer
          */
         viewButton.addActionListener(new ActionListener() {
-            @Override public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 LecturerTable lecturerTable = new LecturerTable();
                 lecturerTable.setTable();
+            }
+        });
+
+        /**
+         * edit
+         */
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nic1 = nic.getText();
+                LectureDao lectureDao = new LectureDaoImpl();
+                Lecture lecture  = (Lecture) lectureDao.getOneLecture(nic1);
+                nic.setText(lecture.getNic());
+                firstName.setText(lecture.getFirstName());
+                lastName.setText(lecture.getLastName());
+                mobile.setText(lecture.getMobile());
+                email.setText(lecture.getEmail());
+                salary.setText(String.valueOf(lecture.getSalary()));
+                city.setText(lecture.getCity());
+                street.setText(lecture.getStreet());
+                lecturerHours.setText(String.valueOf(lecture.getWorkingHours()));
             }
         });
     }

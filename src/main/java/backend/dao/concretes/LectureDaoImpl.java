@@ -93,7 +93,7 @@ public class LectureDaoImpl implements LectureDao<Lecture> {
         }
     }
 
-    public Lecture getOneLecture() {
+    public Lecture getOneLecture(String nic1) {
         return null;
     }
 
