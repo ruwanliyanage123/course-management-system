@@ -6,6 +6,7 @@ import backend.models.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.tools.StandardLocation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,8 +91,38 @@ public class StudentDaoImpl implements StudentDao<Student> {
         }
     }
 
-    public Student getOneStudent(int studentId1) {
-        return null;
+    /**
+     * to take one student
+     * @param studentId studentid
+     * @return student
+     */
+    public Student getOneStudent(int studentId) {
+        connection = databaseConnection.getConnection();
+        String retrieveQuery = "SELECT * FROM student WHERE studentID = ?";
+        Student student = null;
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(retrieveQuery);
+            preparedStatement.setInt(1, studentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String studentId1 = String.valueOf(resultSet.getInt(1));
+                String firstName = resultSet.getString(2);
+                String lastName = resultSet.getString(3);
+                String city = resultSet.getString(4);
+                String street = resultSet.getString(5);
+                String email = resultSet.getString(6);
+                String mobile = resultSet.getString(7);
+                student = new Student(firstName,lastName,city,street,email,mobile);
+                student.setStudentId(studentId1);
+            }
+            String message1 = "Course retrieved successfully";
+            logger.info(message1);
+        } catch (SQLException e) {
+            String message = "Check the course id ";
+            logger.error(message, e);
+        }
+        return student;
     }
 
     public void updateStudent(Student student) {
