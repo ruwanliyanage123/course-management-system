@@ -42,6 +42,7 @@ public class SubjectUI {
                 Subject subject = new Subject(subjectName1, numberOfCredits1, courseID1);
                 SubjectDaoImpl subjectDao  = new SubjectDaoImpl();
                 subjectDao.addSubject(subject);
+
             }
         });
         clearButton.addActionListener(new ActionListener() {

@@ -9,9 +9,7 @@ public class Student {
     private String email;
     private String mobile;
 
-    public Student(String studentId, String firstName, String lastName, String city, String street,
-            String email, String mobile) {
-        this.studentId = studentId;
+    public Student(String firstName, String lastName, String city, String street, String email, String mobile) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
