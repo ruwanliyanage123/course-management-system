@@ -107,7 +107,8 @@ public class StudentUI {
          * to edit
          */
         editSubmitButton.addActionListener(new ActionListener() {
-            @Override public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 String studentId1 = String.valueOf(studentID.getText());
                 String firstName1 = firstName.getText();
                 String lastName1 = lastName.getText();
@@ -119,6 +120,18 @@ public class StudentUI {
                 student.setStudentId(studentId1);
                 StudentDao studentDao = new StudentDaoImpl();
                 studentDao.updateStudent(student);
+            }
+        });
+
+        /**
+         * to delete
+         */
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int studentId = Integer.parseInt(studentID.getText());
+                StudentDao studentDao = new StudentDaoImpl();
+                studentDao.deleteStudent(studentId);
             }
         });
     }
