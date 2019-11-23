@@ -93,8 +93,38 @@ public class SubjectDaoImpl implements SubjectDao<Subject> {
         }
     }
 
+    /**
+     * to retrieve a one subject
+     * @param subjectID subject id
+     * @return subject
+     */
     public Subject getOneSubject(String subjectID) {
-        return null;
+        String query = "SELECT * FROM subject WHERE subjectID = ?";
+        PreparedStatement preparedStatement;
+        Subject subject = null;
+        try {
+            connection = databaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,Integer.parseInt(subjectID));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int studentID = resultSet.getInt(1);
+                String subjectName  = resultSet.getString(2);
+                int numberOfCredit = resultSet.getInt(3);
+                int courseID = resultSet.getInt(4);
+                subject = new Subject(subjectName,numberOfCredit,courseID);
+                subject.setSubjectId(studentID);
+            }
+            String message1 = "Subject retrieved successfully";
+            log.info(message1);
+            connection.close();
+            String message2 = "Database connection closed";
+            log.info(message2);
+        } catch (SQLException e) {
+            String message = "Database connection problem. check your Host, Username, Password and retry";
+            log.error(message, e);
+        }
+        return subject;
     }
 
     public void updateSubject(Subject subject) {
