@@ -101,7 +101,26 @@ public class SubjectDaoImpl implements SubjectDao<Subject> {
 
     }
 
-    public void deleteSubject(String subjectId) {
-
+    /**
+     * to detete subject
+     * @param subjectId subject id
+     */
+    public void deleteSubject(int subjectId) {
+        PreparedStatement preparedStatement;
+        String query = "DELETE FROM subject WHERE subjectID=?";
+        try {
+            connection = databaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,subjectId);
+            preparedStatement.executeUpdate();
+            String message1 = "subject "+subjectId+" Deleted successfully";
+            log.info(message1);
+            connection.close();
+            String message2 = "Database connection closed";
+            log.info(message2);
+        } catch (SQLException e) {
+            String message = "Database connection problem. check your Host, Username, Password and retry";
+            log.error(message, e);
+        }
     }
 }

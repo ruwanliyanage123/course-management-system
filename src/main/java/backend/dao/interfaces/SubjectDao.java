@@ -11,5 +11,5 @@ public interface SubjectDao<Subject> {
 
     public abstract void updateSubject(Subject subject);
 
-    public abstract void deleteSubject(String subjectId);
+    public abstract void deleteSubject(int subjectId);
 }
