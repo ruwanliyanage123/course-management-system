@@ -20,6 +20,9 @@ public class SubjectUI {
     private JButton addSubjectButton;
     private JPanel SubjectUI;
     private JButton clearButton;
+    private JButton deleteButton;
+    private JTextField subjectID;
+    private JButton viewButton;
 
     public SubjectUI() {
 
@@ -32,12 +35,13 @@ public class SubjectUI {
                 int numberOfCredits1 = Integer.parseInt(numberOfCredits.getText());
                 int courseID1 = Integer.parseInt(courseID.getText());
                 Subject subject = new Subject(subjectName1, numberOfCredits1, courseID1);
-                SubjectDaoImpl subjectDao = new SubjectDaoImpl();
+                SubjectDaoImpl subjectDao  = new SubjectDaoImpl();
                 subjectDao.addSubject(subject);
             }
         });
         clearButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
+                subjectID.setText("");
                 subjectName.setText("");
                 numberOfCredits.setText("");
                 courseID.setText("");
@@ -45,11 +49,20 @@ public class SubjectUI {
                 log.info(message);
             }
         });
+
+        /**
+         * to delete given id
+         */
+        deleteButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                int subject = Integer.parseInt(subjectID.getText());
+                SubjectDaoImpl subjectDao  = new SubjectDaoImpl();
+                subjectDao.deleteSubject(subject);
+            }
+        });
     }
 
     public static void main(String[] args) {
-        SubjectTable subjectTable = new SubjectTable();
-        subjectTable.setTable();
         JFrame frame = new JFrame("SubjectUI");
         frame.setContentPane(new SubjectUI().SubjectUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,8 +82,8 @@ public class SubjectUI {
          * @return JTable
          */
         JTable creteTable(){
-            SubjectDaoImpl subjectDao = new SubjectDaoImpl();
             String[] columns = {"subjectID","subjectName","numberOfCredit","courseID "};
+            SubjectDaoImpl subjectDao  = new SubjectDaoImpl();
             String[][] rows = subjectDao.getAllSubjects();
             return new JTable(rows, columns);
         }
