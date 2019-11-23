@@ -1,7 +1,9 @@
 package backend.drivers;
 
 import backend.dao.concretes.StudentDaoImpl;
+import backend.dao.concretes.SubjectDaoImpl;
 import backend.dao.interfaces.StudentDao;
+import backend.dao.interfaces.SubjectDao;
 import backend.models.Student;
 import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
@@ -61,6 +63,16 @@ public class StudentUI {
                 studentID.setText("");
             }
         });
+
+        /**
+         * to take data and view
+         */
+        viewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -69,5 +81,34 @@ public class StudentUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    static class StudentTable{
+        public StudentTable() {
+        }
+
+        /**
+         * create the JTable
+         * @return JTable
+         */
+        JTable creteTable(){
+            String[] columns = {"studentID","firstName","lastName","city","street","email","mobile"};
+            SubjectDao subjectDao = new SubjectDaoImpl();
+            String[][] rows = subjectDao.getAllSubjects();
+            return new JTable(rows, columns);
+        }
+
+        /**
+         * used to set created table
+         */
+        void setTable(){
+            JFrame jFrame = new JFrame("subject");
+            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            JTable jTable = creteTable();
+            JScrollPane jScrollPane = new JScrollPane(jTable);
+            jFrame.getContentPane().add(jScrollPane);
+            jFrame.pack();
+            jFrame.setVisible(true);
+        }
     }
 }
