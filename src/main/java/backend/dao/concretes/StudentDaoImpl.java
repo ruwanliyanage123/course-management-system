@@ -18,6 +18,7 @@ public class StudentDaoImpl implements StudentDao<Student> {
     private static Logger logger = LoggerFactory.getLogger(StudentDaoImpl.class);
     private DatabaseConnection databaseConnection;
     private Connection connection;
+
     /**
      * Inside the constructor will initialize the database connection.
      */
@@ -32,6 +33,7 @@ public class StudentDaoImpl implements StudentDao<Student> {
 
     /**
      * to return all courses
+     *
      * @return list of courses
      */
     public String[][] getAllStudents() {
@@ -93,6 +95,7 @@ public class StudentDaoImpl implements StudentDao<Student> {
 
     /**
      * to take one student
+     *
      * @param studentId studentid
      * @return student
      */
@@ -113,7 +116,7 @@ public class StudentDaoImpl implements StudentDao<Student> {
                 String street = resultSet.getString(5);
                 String email = resultSet.getString(6);
                 String mobile = resultSet.getString(7);
-                student = new Student(firstName,lastName,city,street,email,mobile);
+                student = new Student(firstName, lastName, city, street, email, mobile);
                 student.setStudentId(studentId1);
             }
             String message1 = "Course retrieved successfully";
@@ -126,7 +129,30 @@ public class StudentDaoImpl implements StudentDao<Student> {
     }
 
     public void updateStudent(Student student) {
-
+        connection = databaseConnection.getConnection();
+        String connectionMessage = "Connection established for update courses";
+        logger.info(connectionMessage);
+        String updateQuery = "UPDATE student SET firstName=?,lastName=?,city=?,street=?,email=?,mobile =? WHERE studentID =?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(updateQuery);
+            preparedStatement.setString(1, student.getFirstName());
+            preparedStatement.setString(2, student.getLastName());
+            preparedStatement.setString(3, student.getCity());
+            preparedStatement.setString(4, student.getStreet());
+            preparedStatement.setString(5, student.getEmail());
+            preparedStatement.setString(6, student.getMobile());
+            preparedStatement.setInt(7, Integer.parseInt(student.getStudentId()));
+            preparedStatement.executeUpdate();
+            String message1 = "Course updated successfully";
+            logger.info(message1);
+            connection.close();
+            String message2 = "Database connection closed";
+            logger.info(message2);
+        } catch (SQLException e) {
+            String message = "Check course id and enter valid inputs";
+            logger.error(message, e);
+        }
     }
 
     public void deleteStudent(int studentId) {
