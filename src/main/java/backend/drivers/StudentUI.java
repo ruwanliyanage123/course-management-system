@@ -44,6 +44,23 @@ public class StudentUI {
                 studentDao.addStudent(student);
             }
         });
+
+        /**
+         * clear fields
+         */
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                firstName.setText("");
+                lastName.setText("");
+                city.setText("");
+                street.setText("");
+                email.setText("");
+                mobile.setText("");
+                subjectID.setText("");
+                studentID.setText("");
+            }
+        });
     }
 
     public static void main(String[] args) {
