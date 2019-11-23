@@ -3,13 +3,18 @@ package backend.drivers;
 import javax.swing.*;
 
 public class StudentUI {
-    private JPanel studentUI;
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("StudentUI");
-        frame.setContentPane(new StudentUI().studentUI);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
+    private JTextField email;
+    private JTextField mobile;
+    private JTextField subjectID;
+    private JTextField studentID;
+    private JTextField firstName;
+    private JTextField lastName;
+    private JTextField city;
+    private JTextField street;
+    private JButton addButton;
+    private JButton editButton;
+    private JButton deleteButton;
+    private JButton clearButton;
+    private JButton editSubmitButton;
+    private JButton viewButton;
 }
