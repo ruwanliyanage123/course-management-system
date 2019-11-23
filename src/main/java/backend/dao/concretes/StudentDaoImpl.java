@@ -90,7 +90,7 @@ public class StudentDaoImpl implements StudentDao<Student> {
         }
     }
 
-    public Student getOneStudent() {
+    public Student getOneStudent(int studentId1) {
         return null;
     }
 

@@ -83,6 +83,25 @@ public class StudentUI {
                 studentTable.setTable();
             }
         });
+
+        /**
+         * to edit data
+         */
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int studentId1 = Integer.parseInt(studentID.getText());
+                StudentDao studentDao = new StudentDaoImpl();
+                Student student = (Student) studentDao.getOneStudent(studentId1);
+                studentID.setText(student.getStudentId());
+                firstName.setText(student.getFirstName());
+                lastName.setText(student.getLastName());
+                city.setText(student.getCity());
+                street.setText(student.getStreet());
+                email.setText(student.getEmail());
+                mobile.setText(student.getMobile());
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -103,8 +122,8 @@ public class StudentUI {
          */
         JTable creteTable(){
             String[] columns = {"studentID","firstName","lastName","city","street","email","mobile"};
-            SubjectDao subjectDao = new SubjectDaoImpl();
-            String[][] rows = subjectDao.getAllSubjects();
+            StudentDao studentDao = new StudentDaoImpl();
+            String[][] rows = studentDao.getAllStudents();
             return new JTable(rows, columns);
         }
 
