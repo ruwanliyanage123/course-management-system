@@ -102,6 +102,25 @@ public class StudentUI {
                 mobile.setText(student.getMobile());
             }
         });
+
+        /**
+         * to edit
+         */
+        editSubmitButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                String studentId1 = String.valueOf(studentID.getText());
+                String firstName1 = firstName.getText();
+                String lastName1 = lastName.getText();
+                String city1 = city.getText();
+                String street1 = street.getText();
+                String email1 = email.getText();
+                String mobile1 = mobile.getText();
+                Student student = new Student(firstName1, lastName1, city1, street1, email1, mobile1);
+                student.setStudentId(studentId1);
+                StudentDao studentDao = new StudentDaoImpl();
+                studentDao.updateStudent(student);
+            }
+        });
     }
 
     public static void main(String[] args) {
