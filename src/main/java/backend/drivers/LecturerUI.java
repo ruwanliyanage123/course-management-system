@@ -34,8 +34,7 @@ public class LecturerUI {
          * Take data from user interface and put into database
          */
         addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+            @Override public void actionPerformed(ActionEvent e) {
                 String nic1 = nic.getText();
                 String firstName1 = firstName.getText();
                 String lastName1 = lastName.getText();
@@ -45,7 +44,8 @@ public class LecturerUI {
                 String city1 = city.getText();
                 String street1 = street.getText();
                 int lecturerHours1 = Integer.parseInt(lecturerHours.getText());
-                Lecture lecture = new Lecture(nic1,firstName1,lastName1,city1,street1,email1,mobile1,salary1,lecturerHours1);
+                Lecture lecture = new Lecture(nic1, firstName1, lastName1, city1, street1, email1,
+                        mobile1, salary1, lecturerHours1);
                 LectureDao lectureDao = new LectureDaoImpl();
                 lectureDao.addLecture(lecture);
             }
@@ -73,7 +73,8 @@ public class LecturerUI {
          */
         viewButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-
+                LecturerTable lecturerTable = new LecturerTable();
+                lecturerTable.setTable();
             }
         });
     }
@@ -86,16 +87,18 @@ public class LecturerUI {
         frame.setVisible(true);
     }
 
-    static class LecturerTable{
+    static class LecturerTable {
         public LecturerTable() {
         }
 
         /**
          * create the JTable
+         *
          * @return JTable
          */
-        JTable creteTable(){
-            String[] columns = {"nic", "firstName", "lastName","mobile","email","salary","city","street", "lecturerHours"};
+        JTable creteTable() {
+            String[] columns = { "nic", "firstName", "lastName", "mobile", "email", "salary",
+                    "city", "street", "lecturerHours" };
             LectureDao lectureDao = new LectureDaoImpl();
             String[][] rows = lectureDao.getAllLectures();
             return new JTable(rows, columns);
@@ -104,7 +107,7 @@ public class LecturerUI {
         /**
          * used to set created table
          */
-        void setTable(){
+        void setTable() {
             JFrame jFrame = new JFrame("lecturer");
             jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             JTable jTable = creteTable();
