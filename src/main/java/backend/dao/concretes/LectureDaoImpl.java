@@ -35,7 +35,7 @@ public class LectureDaoImpl implements LectureDao<Lecture> {
 
     public void addLecture(Lecture lecture) {
         connection = databaseConnection.getConnection();
-        String insertQuery = "INSERT INTO student(nic, firstName, lastName,mobile,email,salary,city,street, lecturerHours) VALUES (?,?,?,?,?,?,?,?,?)";
+        String insertQuery = "INSERT INTO lcturer(nic, firstName, lastName,mobile,email,salary,city,street, lecturerHours) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(insertQuery);

@@ -50,5 +50,30 @@ public class LecturerUI {
                 lectureDao.addLecture(lecture);
             }
         });
+
+        /**
+         * clear fields
+         */
+        clearButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                nic.setText("");
+                firstName.setText("");
+                lastName.setText("");
+                mobile.setText("");
+                email.setText("");
+                salary.setText("");
+                city.setText("");
+                street.setText("");
+                lecturerHours.setText("");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("LecturerUI");
+        frame.setContentPane(new LecturerUI().lecturer);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 }
