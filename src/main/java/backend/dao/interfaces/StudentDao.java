@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface StudentDao<Student> {
 
-    public abstract List<Student> getAllStudents();
+    public abstract String[][] getAllStudents();
 
     public abstract void addStudent(Student student);
 

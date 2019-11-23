@@ -8,14 +8,15 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao<Student> {
     private static Logger logger = LoggerFactory.getLogger(StudentDaoImpl.class);
     private DatabaseConnection databaseConnection;
     private Connection connection;
-
     /**
      * Inside the constructor will initialize the database connection.
      */
@@ -27,8 +28,42 @@ public class StudentDaoImpl implements StudentDao<Student> {
             logger.error(message, e);
         }
     }
-    public List<Student> getAllStudents() {
-        return null;
+
+    /**
+     * to return all courses
+     * @return list of courses
+     */
+    public String[][] getAllStudents() {
+        connection = databaseConnection.getConnection();
+        String query = "SELECT * FROM student";
+        PreparedStatement preparedStatement;
+        List<String[]> student = new ArrayList<String[]>();
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String[] tuple = new String[7];
+                tuple[0] = String.valueOf(resultSet.getInt(1));
+                tuple[1] = resultSet.getString(2);
+                tuple[2] = resultSet.getString(3);
+                tuple[3] = resultSet.getString(4);
+                tuple[4] = resultSet.getString(5);
+                tuple[5] = resultSet.getString(6);
+                tuple[6] = resultSet.getString(7);
+                student.add(tuple);
+            }
+            connection.close();
+            String message = "Connection closed";
+            logger.info(message);
+        } catch (SQLException e) {
+            String message = "Check connection";
+            logger.error(message, e);
+        }
+        String[][] row = new String[student.size()][2];
+        for (int i = 0; i < student.size(); i++) {
+            row[i] = student.get(i);
+        }
+        return row;
     }
 
     public void addStudent(Student student) {
