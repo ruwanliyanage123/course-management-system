@@ -53,11 +53,17 @@ public class SubjectUI {
         /**
          * to delete given id
          */
-        deleteButton.addActionListener(new ActionListener() {
+                deleteButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
                 int subject = Integer.parseInt(subjectID.getText());
                 SubjectDaoImpl subjectDao  = new SubjectDaoImpl();
                 subjectDao.deleteSubject(subject);
+            }
+        });
+        viewButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                SubjectTable subjectTable = new SubjectTable();
+                subjectTable.setTable();
             }
         });
     }
