@@ -155,7 +155,26 @@ public class StudentDaoImpl implements StudentDao<Student> {
         }
     }
 
+    /**
+     * delete
+     * @param studentId studenti id
+     */
     public void deleteStudent(int studentId) {
-
+        connection = databaseConnection.getConnection();
+        String deleteQuery = "DELETE FROM student WHERE studentID = ?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1, studentId);
+            preparedStatement.executeUpdate();
+            String message1 = "Successfully deleted";
+            logger.info(message1);
+            connection.close();
+            String message2 = "Connection closed";
+            logger.info(message2);
+        } catch (SQLException e) {
+            String message = "Make sure that courseID is already exists. Check courseID and try again";
+            logger.error(message, e);
+        }
     }
 }
