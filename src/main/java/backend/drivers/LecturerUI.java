@@ -67,6 +67,15 @@ public class LecturerUI {
                 lecturerHours.setText("");
             }
         });
+
+        /**
+         * see the lecturer
+         */
+        viewButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -75,5 +84,34 @@ public class LecturerUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    static class LecturerTable{
+        public LecturerTable() {
+        }
+
+        /**
+         * create the JTable
+         * @return JTable
+         */
+        JTable creteTable(){
+            String[] columns = {"nic", "firstName", "lastName","mobile","email","salary","city","street", "lecturerHours"};
+            LectureDao lectureDao = new LectureDaoImpl();
+            String[][] rows = lectureDao.getAllLectures();
+            return new JTable(rows, columns);
+        }
+
+        /**
+         * used to set created table
+         */
+        void setTable(){
+            JFrame jFrame = new JFrame("lecturer");
+            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            JTable jTable = creteTable();
+            JScrollPane jScrollPane = new JScrollPane(jTable);
+            jFrame.getContentPane().add(jScrollPane);
+            jFrame.pack();
+            jFrame.setVisible(true);
+        }
     }
 }

@@ -3,7 +3,7 @@ package backend.dao.interfaces;
 import java.util.List;
 
 public interface LectureDao <Lecture>{
-    public abstract List<Lecture> getAllLectures();
+    public abstract String[][] getAllLectures();
 
     public abstract void addLecture(Lecture lecture);
 

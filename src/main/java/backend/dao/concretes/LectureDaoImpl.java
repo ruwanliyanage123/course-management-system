@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class LectureDaoImpl implements LectureDao<Lecture> {
-    private static Logger logger = LoggerFactory.getLogger(StudentDaoImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(LectureDaoImpl.class);
     private DatabaseConnection databaseConnection;
     private Connection connection;
 
@@ -29,13 +29,13 @@ public class LectureDaoImpl implements LectureDao<Lecture> {
     }
 
 
-    public List<Lecture> getAllLectures() {
+    public String[][] getAllLectures() {
         return null;
     }
 
     public void addLecture(Lecture lecture) {
         connection = databaseConnection.getConnection();
-        String insertQuery = "INSERT INTO lcturer(nic, firstName, lastName,mobile,email,salary,city,street, lecturerHours) VALUES (?,?,?,?,?,?,?,?,?)";
+        String insertQuery = "INSERT INTO lecturer(nic, firstName, lastName,mobile,email,salary,city,street, lecturerHours) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(insertQuery);
