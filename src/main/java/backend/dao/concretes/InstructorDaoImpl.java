@@ -92,7 +92,7 @@ public class InstructorDaoImpl implements InstructorDao <Instructor> {
         }
     }
 
-    public Instructor getOneInstructor() {
+    public Instructor getOneInstructor(String nic1) {
         return null;
     }
 

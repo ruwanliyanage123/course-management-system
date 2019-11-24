@@ -74,7 +74,29 @@ public class InstructorUI {
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                InstructorTable instructorTable = new InstructorTable();
+                instructorTable.setTable();
+            }
+        });
 
+        /**
+         * edit instructor
+         */
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nic1 = nic.getText();
+                InstructorDao instructorDao = new InstructorDaoImpl();
+                Instructor instructor = (Instructor)instructorDao.getOneInstructor(nic1);
+                nic.setText(instructor.getNic());
+                firstName.setText(instructor.getFirstName());
+                lastName.setText(instructor.getLastName());
+                mobile.setText(instructor.getMobile());
+                email.setText(instructor.getEmail());
+                salary.setText(String.valueOf(instructor.getSalary()));
+                city.setText(instructor.getCity());
+                street.setText(instructor.getStreet());
+                practicalHours.setText(String.valueOf(instructor.getWorkingHours()));
             }
         });
     }
