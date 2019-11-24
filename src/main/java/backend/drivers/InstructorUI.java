@@ -49,5 +49,31 @@ public class InstructorUI {
                 instructorDao.addInstructor(instructor);
             }
         });
+
+        /**
+         * to clear fields
+         */
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nic.setText("");
+                firstName.setText("");
+                lastName.setText("");
+                mobile.setText("");
+                email.setText("");
+                salary.setText("");
+                city.setText("");
+                street.setText("");
+                practicalHours.setText("");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("InstructorUI");
+        frame.setContentPane(new InstructorUI().instructor);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 }
