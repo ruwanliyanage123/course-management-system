@@ -99,6 +99,27 @@ public class InstructorUI {
                 practicalHours.setText(String.valueOf(instructor.getWorkingHours()));
             }
         });
+
+        /**
+         * edit
+         */
+        editSubmitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nic1 = nic.getText();
+                String firstName1 = firstName.getText();
+                String lastName1 = lastName.getText();
+                String city1 = city.getText();
+                String street1 = street.getText();
+                String email1 = email.getText();
+                String mobile1 = mobile.getText();
+                double salary1 = Double.parseDouble(salary.getText());
+                int lecturerHours1 = Integer.parseInt(practicalHours.getText());
+                Instructor instructor = new Instructor(nic1,firstName1, lastName1, city1, street1, email1, mobile1, salary1);
+                InstructorDao instructorDao = new InstructorDaoImpl();
+                instructorDao.updateInstructor(instructor);
+            }
+        });
     }
 
     public static void main(String[] args) {
