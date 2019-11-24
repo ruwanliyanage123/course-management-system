@@ -171,3 +171,4 @@ public class LectureDaoImpl implements LectureDao<Lecture> {
         }
     }
 }
+
