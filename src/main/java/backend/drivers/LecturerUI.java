@@ -101,6 +101,28 @@ public class LecturerUI {
                 lecturerHours.setText(String.valueOf(lecture.getWorkingHours()));
             }
         });
+
+        /**
+         * to keep changes
+         */
+        editSubmitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nic1 = nic.getText();
+                String firstName1 = firstName.getText();
+                String lastName1 = lastName.getText();
+                String city1 = city.getText();
+                String street1 = street.getText();
+                String email1 = email.getText();
+                String mobile1 = mobile.getText();
+                double salary1 = Double.parseDouble(salary.getText());
+                int lecturerHours1 = Integer.parseInt(lecturerHours.getText());
+                Lecture lecture = new Lecture(nic1, firstName1, lastName1, city1, street1, email1,
+                        mobile1, salary1, lecturerHours1);
+                LectureDao lectureDao = new LectureDaoImpl();
+                lectureDao.addLecture(lecture);
+            }
+        });
     }
 
     public static void main(String[] args) {
