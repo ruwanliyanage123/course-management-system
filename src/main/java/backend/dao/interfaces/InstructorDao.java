@@ -3,7 +3,7 @@ package backend.dao.interfaces;
 import java.util.List;
 
 public interface InstructorDao <Instructor> {
-    public abstract List<Instructor> getAllInstructors();
+    public abstract String[][] getAllInstructors();
 
     public abstract void addInstructor(Instructor instructor);
 

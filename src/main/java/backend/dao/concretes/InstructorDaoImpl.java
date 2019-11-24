@@ -28,8 +28,8 @@ public class InstructorDaoImpl implements InstructorDao <Instructor> {
         }
     }
 
-    public List<Instructor> getAllInstructors() {
-        return null;
+    public String[][] getAllInstructors() {
+
     }
 
     public void addInstructor(Instructor instructor) {
@@ -48,7 +48,7 @@ public class InstructorDaoImpl implements InstructorDao <Instructor> {
             preparedStatement.setString(8, instructor.getStreet());
             preparedStatement.setInt(9, instructor.getWorkingHours());
             preparedStatement.executeUpdate();
-            String message1 = "The new lecturer successfully added";
+            String message1 = "The new instructor successfully added";
             logger.info(message1);
             connection.close();
             String message2 = "Database connection closed";

@@ -67,6 +67,16 @@ public class InstructorUI {
                 practicalHours.setText("");
             }
         });
+
+        /**
+         * view data
+         */
+        viewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -75,5 +85,36 @@ public class InstructorUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    static class InstructorTable {
+        public InstructorTable() {
+        }
+
+        /**
+         * create the JTable
+         *
+         * @return JTable
+         */
+        JTable creteTable() {
+            String[] columns = { "nic", "firstName", "lastName", "mobile", "email", "salary",
+                    "city", "street", "practicalHours" };
+            InstructorDao instructorDao = new InstructorDaoImpl();
+            String[][] rows = instructorDao.getAllInstructors();
+            return new JTable(rows, columns);
+        }
+
+        /**
+         * used to set created table
+         */
+        void setTable() {
+            JFrame jFrame = new JFrame("instructor");
+            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            JTable jTable = creteTable();
+            JScrollPane jScrollPane = new JScrollPane(jTable);
+            jFrame.getContentPane().add(jScrollPane);
+            jFrame.pack();
+            jFrame.setVisible(true);
+        }
     }
 }
