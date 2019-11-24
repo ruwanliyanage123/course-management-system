@@ -120,6 +120,18 @@ public class InstructorUI {
                 instructorDao.updateInstructor(instructor);
             }
         });
+
+        /**
+         * delete
+         */
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nic1 = nic.getText();
+                InstructorDao instructorDao = new InstructorDaoImpl();
+                instructorDao.deleteInstructor(nic1);
+            }
+        });
     }
 
     public static void main(String[] args) {

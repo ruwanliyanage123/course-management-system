@@ -123,8 +123,37 @@ public class InstructorDaoImpl implements InstructorDao <Instructor> {
         return instructor;
     }
 
+    /**
+     * to update an instructor
+     * @param instructor instructor
+     */
     public void updateInstructor(Instructor instructor) {
-
+        connection = databaseConnection.getConnection();
+        String connectionMessage = "Connection established for update courses";
+        logger.info(connectionMessage);
+        String updateQuery = "UPDATE instructor SET firstName=?, lastName=?,mobile=?,email=?,salary=?,city=?,street=?, lecturerHours=? WHERE nic=?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(updateQuery);
+            preparedStatement.setString(1, instructor.getFirstName());
+            preparedStatement.setString(2, instructor.getLastName());
+            preparedStatement.setString(3, instructor.getMobile());
+            preparedStatement.setString(4, instructor.getEmail());
+            preparedStatement.setDouble(5, instructor.getSalary());
+            preparedStatement.setString(6, instructor.getCity());
+            preparedStatement.setString(7, instructor.getStreet());
+            preparedStatement.setInt(8, instructor.getWorkingHours());
+            preparedStatement.setString(9, instructor.getNic());
+            preparedStatement.executeUpdate();
+            String message1 = "Instructor updated successfully";
+            logger.info(message1);
+            connection.close();
+            String message2 = "Database connection closed";
+            logger.info(message2);
+        } catch (SQLException e) {
+            String message = "Check course id and enter valid inputs";
+            logger.error(message, e);
+        }
     }
 
     public void deleteInstructor(String nic) {
