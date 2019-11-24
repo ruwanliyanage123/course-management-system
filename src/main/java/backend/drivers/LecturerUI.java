@@ -120,7 +120,18 @@ public class LecturerUI {
                 Lecture lecture = new Lecture(nic1, firstName1, lastName1, city1, street1, email1,
                         mobile1, salary1, lecturerHours1);
                 LectureDao lectureDao = new LectureDaoImpl();
-                lectureDao.addLecture(lecture);
+                lectureDao.updateLecture(lecture);
+            }
+        });
+
+        /**
+         * to delete
+         */
+        deleteButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                String nic1 = nic.getText();
+                LectureDao lectureDao = new LectureDaoImpl();
+                lectureDao.deleteLecture(nic1);
             }
         });
     }
