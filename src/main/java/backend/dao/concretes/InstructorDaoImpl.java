@@ -156,7 +156,26 @@ public class InstructorDaoImpl implements InstructorDao <Instructor> {
         }
     }
 
+    /**
+     * delete
+     * @param nic nic
+     */
     public void deleteInstructor(String nic) {
-
+        connection = databaseConnection.getConnection();
+        String deleteQuery = "DELETE FROM instructor WHERE nic=?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setString(1, nic);
+            preparedStatement.executeUpdate();
+            String message1 = "Successfully deleted";
+            logger.info(message1);
+            connection.close();
+            String message2 = "Connection closed";
+            logger.info(message2);
+        } catch (SQLException e) {
+            String message = "Make sure that courseID is already exists. Check courseID and try again";
+            logger.error(message, e);
+        }
     }
 }
