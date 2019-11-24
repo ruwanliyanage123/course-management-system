@@ -59,7 +59,7 @@ public class LectureDaoImpl implements LectureDao<Lecture> {
             String message = "Check connection";
             logger.error(message, e);
         }
-        String[][] row = new String[lecturer.size()][2];
+        String[][] row = new String[lecturer.size()][9];
         for (int i = 0; i < lecturer.size(); i++) {
             row[i] = lecturer.get(i);
         }
