@@ -41,19 +41,6 @@ Logger can use to show errors, warnings, informations so on
 	logger.warn("message");
 	logger.debug("message");
 	logger.info("message");
-	
-	
-*Nested classes
-
-In this project, I used a nested class(static nested class) named, CourseTable. By using this nested class we can keep course table logics in seperately but inside the courseUI class. the nested classes will increase the readability. two types of nested classes. 1.static nested class 2.non-static nested class(inner class)
-
-call a static nested class
-	
-	OuterClass.InnerClass innerClass = new OuterClass.InnerClass();
-call a non-static class alias inner class
-	
-	OuterClass outerClass = new OuterClass();
-	OuterClass.InnerClass innerClass = outer.new InnerClass();
 
 *GIT commands
 
@@ -90,3 +77,5 @@ git advanced
 	git push -f origin commitid^:branch (to delete last commit message in remote repository)
 	git reset commitid^ (to remove last commit from local repository)
 	git commit --amend -m "new commit message" (to rename the commit message)
+
+
