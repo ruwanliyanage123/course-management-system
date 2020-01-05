@@ -1,13 +1,11 @@
 package backend.dao.interfaces;
 
-import java.util.List;
-
 public interface LectureDao <Lecture>{
-    public abstract List<Lecture> getAllLectures();
+    public abstract String[][] getAllLectures();
 
     public abstract void addLecture(Lecture lecture);
 
-    public abstract Lecture getOneLecture();
+    public abstract Lecture getOneLecture(String nic1);
 
     public abstract void updateLecture(Lecture lecture);
 

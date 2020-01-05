@@ -4,11 +4,15 @@ This will provide a basic guidline to the beginners who are willing to create a 
 	
   ![class diagram](https://firebasestorage.googleapis.com/v0/b/firestorecrud-cdd76.appspot.com/o/course-management-system%2FClass%20Diagram.png?alt=media&token=079498be-d228-4a26-b895-afa9bf903eed)
 
-The EER diagram
+*The EER diagram
 
 ![eer](https://firebasestorage.googleapis.com/v0/b/firestorecrud-cdd76.appspot.com/o/course-management-system%2FEER.png?alt=media&token=2642d98d-d567-476e-88fe-656b75d9b506)
 
-Logging
+*Table Mapping
+
+![d](https://firebasestorage.googleapis.com/v0/b/firestorecrud-cdd76.appspot.com/o/course-management-system%2F1.png?alt=media&token=bcf68e80-7bd8-4397-93bc-0a7550eb2681)
+
+*Logging
 
 Logging is used to store exceptions, information, and warnings as messages that occur during the execution of a program.
 Logging helps a programmer in the debugging process of a program. Java provides logging facility in the java.util.logging 
@@ -37,112 +41,8 @@ Logger can use to show errors, warnings, informations so on
 	logger.warn("message");
 	logger.debug("message");
 	logger.info("message");
-	
-	
-Design Patterns	
 
-Design patterns are the best practises following by the OOP experts. Those are the reusable 
-solutions for the commonly occuring problems
-Those are mainly following into three categories.
-
-1.creational  2.structural 3.behaviour
-
-In this project I used Singleton Design pattern and DAO design pattern
-
-1.singleton design pattern for the database connection.
-
-Singleton design pattern belongs into the creational category. Those are control the object creation
-and reduce the complexity of the system. This design pattern can use with database connection. By using 
-singleton design pattern for the database connection we can ensure that we will be able to maintain the 
-a single database connection over the project without any problems. other wise if there more than one connections, can
-be happen problems. Inorder to do that, we have to do two things. number one is make constructor as private. number two is 
-create the one and only object inside the static method. why make constructor as private? It will make sure
-that there cannot be create more than one object. Then why use static method? it used to take an object 
-without create an instance of the class. (hide the object creation by avoid from use "new" keyword directly.)
-
-    public class DBConnection {
-        private static DBConnection dbConnection;
-        private DBConnection(){
-            //keep constructor as private to make sure restrict to the single object creation
-        }
-    
-        public static DBConnection getInstance(){
-            if(dbConnection==null){
-                //create an object inside the static method to take instance without using the new keyword
-                dbConnection = new DBConnection();
-            }
-            return dbConnection;
-        }
-    }
-
-
-2.DAO design pattern. (dao interface)
-
-DAO design pattern using to seperate the low level data accessing API from high level business level
-services. In this design pattern, there are three main parts. 
-
-1.DAO Interface -Declare the all methods are need to perform on the model
-
-2.DAO Implementation - Take data from the Data source.(database)
-
-3.Model - Java bean (use to store data to transmission purpose)
-
-
-CourseDao.java (dao interface)
-
-    public interface CourseDao<Course> {    
-        public abstract String[][] getAllCourses();    
-        public abstract void addCourse(Course course);    
-        public abstract Course getOneCourse(int courseID);    
-        public abstract void updateCourse(Course course, int courseId);
-        public abstract void deleteCourse(int courseId);
-    }
-    
-CourseDaoImpl.java (implementation of dao interface)
-
-    public interface CourseDao<Course> {    
-        public  String[][] getAllCourses(){
-            //implementation to take all courses
-        }    
-        public void addCourse(Course course){
-            //implementation to add one course
-        }   
-        public Course getOneCourse(int courseID){
-            //implementation to take one course
-        }   
-        public void updateCourse(Course course, int courseId){
-            //implementation to update one course
-        }
-        public void deleteCourse(int courseId){
-            //implementation to delete one course
-        }
-    }
-    
-Course.java (model)    
-    
-    public class Course {
-        private int courseId;
-        private String courseName;
-    
-        public Course(String courseName) {
-            this.courseName = courseName;
-        }
-    
-        public int getCourseId() {
-            return courseId;
-        }
-    
-        public String getCourseName() {
-            return courseName;
-        }
-    
-        public void setCourseName(String courseName) {
-            this.courseName = courseName;
-        }
-    }
-
-
-GIT commands
+*GIT commands
 
 basic commands
 basically local git repository contains three parts. those are
