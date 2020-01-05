@@ -37,6 +37,46 @@ Logger can use to show errors, warnings, informations so on
 	logger.warn("message");
 	logger.debug("message");
 	logger.info("message");
+	
+	
+Design Patterns	
+
+Design patterns are the best practises following by the OOP experts. Those are the reusable 
+solutions for the commonly occuring problems
+Those are mainly following into three categories.
+
+1.creational  2.structural 3.behaviour
+
+In this project I used Singleton Design pattern and DAO design pattern
+
+1.singleton design pattern for the database connection.
+
+Singleton design pattern belongs into the creational category. Those are control the object creation
+and reduce the complexity of the system. This design pattern can use with database connection. By using 
+singleton design pattern for the database connection we can ensure that we will be able to maintain the 
+a single database connection over the project without any problems. other wise if there more than one connections, can
+be happen problems. Inorder to do that, we have to do two things. number one is make constructor as private. number two is 
+create the one and only object inside the static method. why make constructor as private? It will make sure
+that there cannot be create more than one object. Then why use static method? it used to take an object 
+without create an instance of the class. (hide the object creation by avoid from use "new" keyword directly.)
+
+    public class DBConnection {
+        private static DBConnection dbConnection;
+        private DBConnection(){
+            //keep constructor as private to make sure restrict to the single object creation
+        }
+    
+        public static DBConnection getInstance(){
+            if(dbConnection==null){
+                //create an object inside the static method to take instance without using the new keyword
+                dbConnection = new DBConnection();
+            }
+            return dbConnection;
+        }
+    }
+
+
+2.DAO design pattern. 
 
 GIT commands
 
@@ -73,3 +113,5 @@ git advanced
 	git push -f origin commitid^:branch (to delete last commit message in remote repository)
 	git reset commitid^ (to remove last commit from local repository)
 	git commit --amend -m "new commit message" (to rename the commit message)
+
+
