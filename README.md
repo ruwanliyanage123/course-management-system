@@ -76,7 +76,71 @@ without create an instance of the class. (hide the object creation by avoid from
     }
 
 
-2.DAO design pattern. 
+2.DAO design pattern. (dao interface)
+
+DAO design pattern using to seperate the low level data accessing API from high level business level
+services. In this design pattern, there are three main parts. 
+
+1.DAO Interface -Declare the all methods are need to perform on the model
+
+2.DAO Implementation - Take data from the Data source.(database)
+
+3.Model - Java bean (use to store data to transmission purpose)
+
+
+CourseDao.java (dao interface)
+
+    public interface CourseDao<Course> {    
+        public abstract String[][] getAllCourses();    
+        public abstract void addCourse(Course course);    
+        public abstract Course getOneCourse(int courseID);    
+        public abstract void updateCourse(Course course, int courseId);
+        public abstract void deleteCourse(int courseId);
+    }
+    
+CourseDaoImpl.java (implementation of dao interface)
+
+    public interface CourseDao<Course> {    
+        public  String[][] getAllCourses(){
+            //implementation to take all courses
+        }    
+        public void addCourse(Course course){
+            //implementation to add one course
+        }   
+        public Course getOneCourse(int courseID){
+            //implementation to take one course
+        }   
+        public void updateCourse(Course course, int courseId){
+            //implementation to update one course
+        }
+        public void deleteCourse(int courseId){
+            //implementation to delete one course
+        }
+    }
+    
+Course.java (model)    
+    
+    public class Course {
+        private int courseId;
+        private String courseName;
+    
+        public Course(String courseName) {
+            this.courseName = courseName;
+        }
+    
+        public int getCourseId() {
+            return courseId;
+        }
+    
+        public String getCourseName() {
+            return courseName;
+        }
+    
+        public void setCourseName(String courseName) {
+            this.courseName = courseName;
+        }
+    }
+
 
 GIT commands
 
