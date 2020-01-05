@@ -41,6 +41,7 @@ Logger can use to show errors, warnings, informations so on
 	logger.warn("message");
 	logger.debug("message");
 	logger.info("message");
+<<<<<<< HEAD
 	
 	
 *Nested classes
@@ -156,6 +157,8 @@ Course.java (model)
             this.courseName = courseName;
         }
     }
+=======
+>>>>>>> bf5ee6e68b40064c592f9bfb9ba7f7b4bd32c2ee
 
 *GIT commands
 
@@ -192,3 +195,5 @@ git advanced
 	git push -f origin commitid^:branch (to delete last commit message in remote repository)
 	git reset commitid^ (to remove last commit from local repository)
 	git commit --amend -m "new commit message" (to rename the commit message)
+
+
