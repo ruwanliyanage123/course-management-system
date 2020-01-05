@@ -46,8 +46,9 @@ public class DatabaseConnection {
      * By using static method, no need to create an instance. instead of that can direct call the method and get the connection
      * @return created database connection
      * @throws SQLException can be arise, if connection will null
+     * keep method as synchronized to make sure that the method as thread safe
      */
-    public static DatabaseConnection getInstance() throws SQLException {
+    public synchronized static DatabaseConnection getInstance() throws SQLException {
         if (databaseConnection == null) {
             databaseConnection = new DatabaseConnection();
         }
