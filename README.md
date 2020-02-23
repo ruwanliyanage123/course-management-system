@@ -199,3 +199,4 @@ git advanced
 	git commit --amend -m "new commit message" (to rename the commit message)
 
 
+https://docs.google.com/document/d/118Uds9zaS6CfzBkvikYWRdxjR_BN3G3-ikVsPg4Bp4A/edit
