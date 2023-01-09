@@ -70,7 +70,7 @@ In this project I used Singleton Design pattern and DAO design pattern
 
 1.singleton design pattern for the database connection.
 
-Singleton design pattern belongs into the creational category. Those are control the object creation
+Singleton design pattern belongs into the creational design pattern category. Those are control the object creation
 and reduce the complexity of the system. This design pattern can use with database connection. By using 
 singleton design pattern for the database connection we can ensure that we will be able to maintain the 
 a single database connection over the project without any problems. other wise if there more than one connections, can
