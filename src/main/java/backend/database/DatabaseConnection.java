@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +21,6 @@ public class DatabaseConnection {
     private DatabaseConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //TODO:explain the assert
             assert false;
             String password = "19940306";
             String username = "root";
@@ -49,6 +47,12 @@ public class DatabaseConnection {
      * keep method as synchronized to make sure that the method as thread safe
      */
     public synchronized static DatabaseConnection getInstance() throws SQLException {
+    /**
+     * This pattern is not guaranteed that for the singleton pattern. Insted of this we can use
+     * 1. Double checking mechanism
+     * 2. Nested static class mechanism.
+     * If we use Double checking mechanism, that will cause for the deadlocking situations, then est ways is using a nested static class for this..
+     */
         if (databaseConnection == null) {
             databaseConnection = new DatabaseConnection();
         }
