@@ -19,6 +19,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 public class CourseUI {
+    //Add getter methods to the each private variables and set the instances inside those getters
     private static Object BorderLayout;
     private JPanel courseUI;
     private JButton addButton;
