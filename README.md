@@ -93,6 +93,21 @@ without create an instance of the class. (hide the object creation by avoid from
             return dbConnection;
         }
     }
+    
+    #You can use the following way to avoid the deadlock handling
+    
+    public final class DatabaseConnection(){
+     
+	private DatabaseConnection(){} 
+    
+	private static class DatabaseConnectionLazyLoader{
+	    pubilc static final INSTANCE = new DatabaseConnection();
+	}
+	
+	public static DatabaseConnection getInstance(){
+	    return DatabaseConnectionLazyLoader.INSTANCE;
+	}
+    }
 
 
 2.DAO design pattern. (dao interface)
